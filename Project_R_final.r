@@ -301,6 +301,7 @@ power <- function(size, distribution, number_simulations, effect) {
   return (results_power)
 }
 
+# Big effect
 # n = 10
 results_power_NORMAL_10 <- power(10, "normal", 10000, 2)
 results_power_EXP_10 <- power(10, "exp", 10000, 2)
@@ -336,6 +337,44 @@ results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 2)
 results_power_UNIFORM_200 <- power(200, "uniform", 10000, 2)
 results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 2)
 results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 2)
+
+# Moderate effect
+# n = 10
+results_power_NORMAL_10 <- power(10, "normal", 10000, 0.5)
+results_power_EXP_10 <- power(10, "exp", 10000, 0.5)
+results_power_T3_10 <- power(10, "t3", 10000, 0.5)
+results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 0.5)
+results_power_UNIFORM_10 <- power(10, "uniform", 10000, 0.5)
+results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 0.5)
+results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 0.5)
+
+# n = 20
+results_power_NORMAL_20 <- power(20, "normal", 10000, 0.5)
+results_power_EXP_20 <- power(20, "exp", 10000, 0.5)
+results_power_T3_20 <- power(20, "t3", 10000, 0.5)
+results_power_LOGNORM_20 <- power(20, "lognorm", 10000, 0.5)
+results_power_UNIFORM_20 <- power(20, "uniform", 10000, 0.5)
+results_power_BIMODAL_20 <- power(20, "bimodal", 10000, 0.5)
+results_power_DIFFVAR_20 <- power(20, "normal_diff_var", 10000, 0.5)
+
+# n = 40
+results_power_NORMAL_40 <- power(40, "normal", 10000, 0.5)
+results_power_EXP_40 <- power(40, "exp", 10000, 0.5)
+results_power_T3_40 <- power(40, "t3", 10000, 0.5)
+results_power_LOGNORM_40 <- power(40, "lognorm", 10000, 0.5)
+results_power_UNIFORM_40 <- power(40, "uniform", 10000, 0.5)
+results_power_BIMODAL_40 <- power(40, "bimodal", 10000, 0.5)
+results_power_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 0.5)
+
+# n = 200
+results_power_NORMAL_200 <- power(200, "normal", 10000, 0.5)
+results_power_EXP_200 <- power(200, "exp", 10000, 0.5)
+results_power_T3_200 <- power(200, "t3", 10000, 0.5)
+results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 0.5)
+results_power_UNIFORM_200 <- power(200, "uniform", 10000, 0.5)
+results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 0.5)
+results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 0.5)
+
 
 
 
