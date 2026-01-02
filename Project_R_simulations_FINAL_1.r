@@ -4,21 +4,24 @@
 #   Máster en Bioinformática y Biología Computacional – UAM
 #   Academic year: 2025–2026
 #
-#   Authors: CHEN XI, GEMMA ROZALEN, ESTEFANI CASALLAS, MARIAN (COMPLETAR)
-#   Teacher: (COMPLETAR)
+#   Authors: CHEN XI YE XU, GEMMA ROZALEN, ESTEFANI CASALLAS, MARIAN MENDOZA
+#   Teacher: RAMÓN DÍAZ URIARTE
 #
-#   Description: we want to check through a series of simulations how only using t-test, only using wilcoxon or using first a normalisty 
-#                test such as Shapiro-Wilk to decide what kind of test to apply. 
-#       
+#   Description: we want to check through a series of simulations how only using t-test, only using wilcoxon or using first a normality 
+#                test such as Shapiro-Wilk to decide what kind of test to apply will affect the type I error and power of the tests. 
+#                Using a normality test before choosing whether to use a parametric or non-parametric test is being called "the perverse
+#                procedure" because of the problems it causes with the simplification of a choice that should be carefully pondered about by 
+#                looking and understanding the data. 
+#
 # -----------------------------------------------------------------------------------------------------------------------
 
 
 #################################################TYPE I ERROR#####################################################
 
-# Type I error is defined as rejeting the null hypothesis even when the null hypothesis is TRUE.
+# Type I error is defined as rejecting the null hypothesis even when the null hypothesis is TRUE.
 # To demonstrate the type I error each procedure has, we simulate data that complies with the null hypothesis and see
-# how each procedure handles that data. For that purporse we will use two independent groups with the same NORMAL
-# distribution and then two groups with NON-NORMAL distribution (for example, exponential). 
+# how each procedure handles that data. For that purpose we will use two independent groups with the same NORMAL
+# distribution and then two groups with NON-NORMAL distribution but the same mean (for example, exponential). 
 
 
 type_1_error <- function(size, distribution, number_simulations) {
@@ -45,31 +48,36 @@ type_1_error <- function(size, distribution, number_simulations) {
         g1 <- rexp(size, rate = 1)
         g2 <- rexp(size, rate = 1) 
     } 
+    
+    #t-distribution with 3 degrees of freedom (heavier tails to differentiate it 
+    #from a normal distribution)
     else if (distribution == "t3") {
         g1 <- rt(size, df = 3)
         g2 <- rt(size, df = 3)
-
     } 
+    
     else if (distribution == "lognorm") {
         g1 <- rlnorm(size, meanlog = 0, sdlog = 1)
         g2 <- rlnorm(size, meanlog = 0, sdlog = 1)
-
     } 
+    
     else if (distribution == "uniform") {
         g1 <- runif(size, min = -1, max = 1)
         g2 <- runif(size, min = -1, max = 1)
-
     } 
+    
     else if (distribution == "bimodal") {
-    # mixture of two normals
-        g1 <- ifelse(runif(size) < 0.5, rnorm(size, -1, 1), rnorm(size, 1, 1))
-        g2 <- ifelse(runif(size) < 0.5, rnorm(size, -1, 1), rnorm(size, 1, 1))
-
+    # Mixture of two normal distributions. One with mean -1 and another with mean 1.
+      choice <- runif(size) < 0.5
+        g1 <- rnorm(size, mean = ifelse(choice, -1, 1), sd = 1)
+        g2 <- rnorm(size, mean = ifelse(choice, -1, 1), sd = 1)
     } 
+    
     else if (distribution == "normal_diff_var") {
         g1 <- rnorm(size, 0, 1)
         g2 <- rnorm(size, 0, 2)  # same mean, different variance
     }
+    
     else {
         stop("Invalid distribution!")
     }
@@ -147,15 +155,6 @@ results_error_type_I_UNIFORM_10 <- type_1_error(10, "uniform", 10000)
 results_error_type_I_BIMODAL_10 <- type_1_error(10, "bimodal", 10000)
 results_error_type_I_NORMAL_DIFFVAR_10<- type_1_error(10, "normal_diff_var", 10000)
 
-# n = 20
-results_error_type_I_NORMAL_20 <- type_1_error(20, "normal", 10000)
-results_error_type_I_EXP_20 <- type_1_error(20, "exp", 10000)
-results_error_type_I_T3_20 <- type_1_error(20, "t3", 10000)
-results_error_type_I_LOGNORM_20 <- type_1_error(20, "lognorm", 10000)
-results_error_type_I_UNIFORM_20 <- type_1_error(20, "uniform", 10000)
-results_error_type_I_BIMODAL_20 <- type_1_error(20, "bimodal", 10000)
-results_error_type_I_DIFFVAR_20 <- type_1_error(20, "normal_diff_var", 10000)
-
 # n = 40
 results_error_type_I_NORMAL_40 <- type_1_error(40, "normal", 10000)
 results_error_type_I_EXP_40 <- type_1_error(40, "exp", 10000)
@@ -173,14 +172,18 @@ results_error_type_I_LOGNORM_200 <- type_1_error(200, "lognorm", 10000)
 results_error_type_I_UNIFORM_200 <- type_1_error(200, "uniform", 10000)
 results_error_type_I_BIMODAL_200 <- type_1_error(200, "bimodal", 10000)
 results_error_type_I_DIFFVAR_200 <- type_1_error(200, "normal_diff_var", 10000)
+
+
   
 ########################################################POWER#########################################################
 
-# Power is defined as the probability of correctly rejecting null hypothesis when alternative hypothesis is TRUE. 
+# Power is defined as the probability of correctly rejecting null hypothesis when the alternative hypothesis is TRUE. 
 # To demonstrate the power of each procedure, we simulate data that complies with the alternative hypothesis and see
-# how each procedure handles that data. For that purporse we will use two independent groups with different NORMAL
-# distributions and then two groups with different NON-NORMAL distribution (for example, exponential).
+# how each procedure handles that data. For that purpose we will use two independent groups with NORMAL
+# distributions (with different means) and then two groups with NON-NORMAL distribution (with different means) (for example, exponential).
 
+#effect must be a number that will be added to all numbers of one of the datasets, effectively changing the mean by 
+# adding that effect.
 power <- function(size, distribution, number_simulations, effect) {
   # We initialize the counters for rejecting H0 (i.e., correctly detecting an effect under H1).  
   reject_t_power <- 0
@@ -221,9 +224,10 @@ power <- function(size, distribution, number_simulations, effect) {
 
     } 
     else if (distribution == "bimodal") {
-    # Mixture of two normals
-        g1 <- ifelse(runif(size) < 0.5, rnorm(size, -1, 1), rnorm(size, 1, 1))
-        g2 <- ifelse(runif(size) < 0.5, rnorm(size, -1, 1), rnorm(size, 1, 1)) + effect
+    # Mixture of two normal distributions.
+      choice <- runif(size) < 0.5 
+        g1 <- rnorm(size, mean = ifelse(choice, -1, 1), sd = 1)
+        g2 <- rnorm(size, mean = ifelse(choice, -1, 1), sd = 1) + effect
 
     } 
     else if (distribution == "normal_diff_var") {
@@ -301,44 +305,8 @@ power <- function(size, distribution, number_simulations, effect) {
   return (results_power)
 }
 
-# Big effect
-# n = 10
-results_power_NORMAL_10 <- power(10, "normal", 10000, 2)
-results_power_EXP_10 <- power(10, "exp", 10000, 2)
-results_power_T3_10 <- power(10, "t3", 10000, 2)
-results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 2)
-results_power_UNIFORM_10 <- power(10, "uniform", 10000, 2)
-results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 2)
-results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 2)
 
-# n = 20
-results_power_NORMAL_20 <- power(20, "normal", 10000, 2)
-results_power_EXP_20 <- power(20, "exp", 10000, 2)
-results_power_T3_20 <- power(20, "t3", 10000, 2)
-results_power_LOGNORM_20 <- power(20, "lognorm", 10000, 2)
-results_power_UNIFORM_20 <- power(20, "uniform", 10000, 2)
-results_power_BIMODAL_20 <- power(20, "bimodal", 10000, 2)
-results_power_DIFFVAR_20 <- power(20, "normal_diff_var", 10000, 2)
-
-# n = 40
-results_power_NORMAL_40 <- power(40, "normal", 10000, 2)
-results_power_EXP_40 <- power(40, "exp", 10000, 2)
-results_power_T3_40 <- power(40, "t3", 10000, 2)
-results_power_LOGNORM_40 <- power(40, "lognorm", 10000, 2)
-results_power_UNIFORM_40 <- power(40, "uniform", 10000, 2)
-results_power_BIMODAL_40 <- power(40, "bimodal", 10000, 2)
-results_power_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 2)
-
-# n = 200
-results_power_NORMAL_200 <- power(200, "normal", 10000, 2)
-results_power_EXP_200 <- power(200, "exp", 10000, 2)
-results_power_T3_200 <- power(200, "t3", 10000, 2)
-results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 2)
-results_power_UNIFORM_200 <- power(200, "uniform", 10000, 2)
-results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 2)
-results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 2)
-
-# Moderate effect
+############################### Moderate effect = 0.5
 # n = 10
 results_power_NORMAL_10 <- power(10, "normal", 10000, 0.5)
 results_power_EXP_10 <- power(10, "exp", 10000, 0.5)
@@ -347,15 +315,6 @@ results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 0.5)
 results_power_UNIFORM_10 <- power(10, "uniform", 10000, 0.5)
 results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 0.5)
 results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 0.5)
-
-# n = 20
-results_power_NORMAL_20 <- power(20, "normal", 10000, 0.5)
-results_power_EXP_20 <- power(20, "exp", 10000, 0.5)
-results_power_T3_20 <- power(20, "t3", 10000, 0.5)
-results_power_LOGNORM_20 <- power(20, "lognorm", 10000, 0.5)
-results_power_UNIFORM_20 <- power(20, "uniform", 10000, 0.5)
-results_power_BIMODAL_20 <- power(20, "bimodal", 10000, 0.5)
-results_power_DIFFVAR_20 <- power(20, "normal_diff_var", 10000, 0.5)
 
 # n = 40
 results_power_NORMAL_40 <- power(40, "normal", 10000, 0.5)
@@ -377,6 +336,33 @@ results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 0.5)
 
 
 
+############################### Big effect = 5
+# n = 10
+results_power_NORMAL_10 <- power(10, "normal", 10000, 5)
+results_power_EXP_10 <- power(10, "exp", 10000, 5)
+results_power_T3_10 <- power(10, "t3", 10000, 5)
+results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 5)
+results_power_UNIFORM_10 <- power(10, "uniform", 10000, 5)
+results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 5)
+results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 5)
+
+# n = 40
+results_power_NORMAL_40 <- power(40, "normal", 10000, 5)
+results_power_EXP_40 <- power(40, "exp", 10000, 5)
+results_power_T3_40 <- power(40, "t3", 10000, 5)
+results_power_LOGNORM_40 <- power(40, "lognorm", 10000, 5)
+results_power_UNIFORM_40 <- power(40, "uniform", 10000, 5)
+results_power_BIMODAL_40 <- power(40, "bimodal", 10000, 5)
+results_power_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 5)
+
+# n = 200
+results_power_NORMAL_200 <- power(200, "normal", 10000, 5)
+results_power_EXP_200 <- power(200, "exp", 10000, 5)
+results_power_T3_200 <- power(200, "t3", 10000, 5)
+results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 5)
+results_power_UNIFORM_200 <- power(200, "uniform", 10000, 5)
+results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 5)
+results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 5)
 
 
 
