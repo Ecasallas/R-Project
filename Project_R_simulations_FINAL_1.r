@@ -162,7 +162,7 @@ results_error_type_I_T3_40 <- type_1_error(40, "t3", 10000)
 results_error_type_I_LOGNORM_40 <- type_1_error(40, "lognorm", 10000)
 results_error_type_I_UNIFORM_40 <- type_1_error(40, "uniform", 10000)
 results_error_type_I_BIMODAL_40 <- type_1_error(40, "bimodal", 10000)
-results_error_type_I_DIFFVAR_40 <- type_1_error(40, "normal_diff_var", 10000)
+results_error_type_I_NORMAL_DIFFVAR_40 <- type_1_error(40, "normal_diff_var", 10000)
 
 # n = 200
 results_error_type_I_NORMAL_200 <- type_1_error(200, "normal", 10000)
@@ -171,7 +171,7 @@ results_error_type_I_T3_200 <- type_1_error(200, "t3", 10000)
 results_error_type_I_LOGNORM_200 <- type_1_error(200, "lognorm", 10000)
 results_error_type_I_UNIFORM_200 <- type_1_error(200, "uniform", 10000)
 results_error_type_I_BIMODAL_200 <- type_1_error(200, "bimodal", 10000)
-results_error_type_I_DIFFVAR_200 <- type_1_error(200, "normal_diff_var", 10000)
+results_error_type_I_NORMAL_DIFFVAR_200 <- type_1_error(200, "normal_diff_var", 10000)
 
 
   
@@ -314,7 +314,7 @@ results_power_T3_10 <- power(10, "t3", 10000, 0.5)
 results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 0.5)
 results_power_UNIFORM_10 <- power(10, "uniform", 10000, 0.5)
 results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 0.5)
-results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 0.5)
+results_power_NORMAL_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 0.5)
 
 # n = 40
 results_power_NORMAL_40 <- power(40, "normal", 10000, 0.5)
@@ -323,7 +323,7 @@ results_power_T3_40 <- power(40, "t3", 10000, 0.5)
 results_power_LOGNORM_40 <- power(40, "lognorm", 10000, 0.5)
 results_power_UNIFORM_40 <- power(40, "uniform", 10000, 0.5)
 results_power_BIMODAL_40 <- power(40, "bimodal", 10000, 0.5)
-results_power_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 0.5)
+results_power_NORMAL_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 0.5)
 
 # n = 200
 results_power_NORMAL_200 <- power(200, "normal", 10000, 0.5)
@@ -332,7 +332,7 @@ results_power_T3_200 <- power(200, "t3", 10000, 0.5)
 results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 0.5)
 results_power_UNIFORM_200 <- power(200, "uniform", 10000, 0.5)
 results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 0.5)
-results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 0.5)
+results_power_NORMAL_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 0.5)
 
 
 
@@ -344,7 +344,7 @@ results_power_T3_10 <- power(10, "t3", 10000, 5)
 results_power_LOGNORM_10 <- power(10, "lognorm", 10000, 5)
 results_power_UNIFORM_10 <- power(10, "uniform", 10000, 5)
 results_power_BIMODAL_10 <- power(10, "bimodal", 10000, 5)
-results_power_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 5)
+results_power_NORMAL_DIFFVAR_10 <- power(10, "normal_diff_var", 10000, 5)
 
 # n = 40
 results_power_NORMAL_40 <- power(40, "normal", 10000, 5)
@@ -353,7 +353,7 @@ results_power_T3_40 <- power(40, "t3", 10000, 5)
 results_power_LOGNORM_40 <- power(40, "lognorm", 10000, 5)
 results_power_UNIFORM_40 <- power(40, "uniform", 10000, 5)
 results_power_BIMODAL_40 <- power(40, "bimodal", 10000, 5)
-results_power_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 5)
+results_power_NORMAL_DIFFVAR_40 <- power(40, "normal_diff_var", 10000, 5)
 
 # n = 200
 results_power_NORMAL_200 <- power(200, "normal", 10000, 5)
@@ -362,44 +362,4 @@ results_power_T3_200 <- power(200, "t3", 10000, 5)
 results_power_LOGNORM_200 <- power(200, "lognorm", 10000, 5)
 results_power_UNIFORM_200 <- power(200, "uniform", 10000, 5)
 results_power_BIMODAL_200 <- power(200, "bimodal", 10000, 5)
-results_power_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 5)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+results_power_NORMAL_DIFFVAR_200 <- power(200, "normal_diff_var", 10000, 5)
