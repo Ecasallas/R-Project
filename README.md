@@ -10,13 +10,45 @@ Objective: through a series of simulations we aim to demonstrate why using a nor
 The code associated with this project was run using R (version 4.5.1).
 
 The authors of this project are:
-CHEN XI YE XU
-GEMMA ROZALEN
-ESTEFANI CASALLAS
-MARIAN MENDOZA
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/chenxiyexu">
+        <img src="https://github.com/chenxiyexu.png?size=160" width="160" alt="chenxiyexu"/>
+        <br />
+        <sub><b>Chen Xi Ye Xu</b></sub>
+      </a>
+    </td>
+
+    <td align="center">
+      <a href="https://github.com/gmmrzcn">
+        <img src="https://github.com/gmmrzcn.png?size=160" width="160" alt="gmmrzcn"/>
+        <br />
+        <sub><b>Gemma Rozalen</b></sub>
+      </a>
+    </td>
+
+    <td align="center">
+      <a href="https://github.com/marianmendoza">
+        <img src="https://github.com/marianmendoza.png?size=160" width="160" alt="marianmendoza"/>
+        <br />
+        <sub><b>Marian Mendoza</b></sub>
+      </a>
+    </td>
+
+    <td align="center">
+      <a href="https://github.com/Ecassallas">
+        <img src="https://github.com/Ecassallas.png?size=160" width="160" alt="Ecassallas"/>
+        <br />
+        <sub><b>Estefani Casallas</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 ​
 ## License
 This code is under licenses:
 - **Code (R scripts):** MIT License (see `LICENSE`).
 - **Documentation and educational materials (README, figures, reports, etc.):** CC BY-NC 4.0 (see `LICENSE-DOCS-CC-BY-NC-4.0`).
+
 You may use it, modify it and share the code for educational purposes if given due credit. This code is not avaiolable for commercial purposes. 
