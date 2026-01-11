@@ -21,7 +21,9 @@ The code associated with this project was run using R (version 4.5.1).
       </a>
     </td>
 
-  <td align="center">
+<table>
+  <tr>
+    <td align="center">
       <a href="https://github.com/gmmrzcn">
         <img src="https://github.com/gmmrzcn.png?size=160" width="160" alt="gmmrzcn" />
         <br />
@@ -29,7 +31,9 @@ The code associated with this project was run using R (version 4.5.1).
       </a>
     </td>
 
-  <td align="center">
+<table>
+  <tr>
+    <td align="center">
       <a href="https://github.com/marianmendoza">
         <img src="https://github.com/marianmendoza.png?size=160" width="160" alt="marianmendoza" />
         <br />
@@ -37,7 +41,9 @@ The code associated with this project was run using R (version 4.5.1).
       </a>
     </td>
 
-  <td align="center">
+<table>
+  <tr>
+    <td align="center">
       <a href="https://github.com/Ecassallas">
         <img src="https://github.com/Ecassallas.png?size=160" width="160" alt="Ecassallas" />
         <br />
