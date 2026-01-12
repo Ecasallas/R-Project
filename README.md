@@ -24,4 +24,4 @@ This code is under licenses:
 - **Code (R scripts):** MIT License (see `LICENSE`).
 - **Documentation and educational materials (README, figures, reports, etc.):** CC BY-NC 4.0 (see `LICENSE-DOCS-CC-BY-NC-4.0`).
 
-You may use it, modify it and share the code for educational purposes if given due credit. This code is not avaiolable for commercial purposes. 
+You may use it, modify it and share the code for educational purposes if given due credit. This code is not available for commercial purposes. 
